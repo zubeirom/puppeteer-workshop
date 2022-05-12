@@ -9,10 +9,13 @@ const puppeteer = require('puppeteer');
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false
+        headless: false,
     });
     const page = await browser.newPage();
-    await page.goto('https://google.com');
-
+    await page.goto('https://wikipedia.com');
+    await page.waitFor(4000);
+    await page.type('#searchInput', 'Brot', { delay: 500 });
+    await page.keyboard.press('Enter');
+    await page.waitFor(3000);
     await browser.close();
 })();
